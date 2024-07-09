@@ -223,5 +223,5 @@ def main():
     # Embed the Tableau code into Streamlit using components.html
     components.html(tableau_code, height=800)
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     main()
