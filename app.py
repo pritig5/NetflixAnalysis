@@ -175,7 +175,8 @@ else:
 import streamlit as st
 import streamlit.components.v1 as components
 
-st.title("Tableau Dashboard")
+def main():
+    st.title("Example Tableau Dashboard")
 
     tableau_code = """
     <div class='tableauPlaceholder' id='viz1720513827896' style='position: relative'>
@@ -223,5 +224,5 @@ st.title("Tableau Dashboard")
     # Embed the Tableau code into Streamlit using components.html
     components.html(tableau_code, height=800)
 
-
-    
+if __name__ == "__main__":
+    main()
