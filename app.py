@@ -176,7 +176,7 @@ import streamlit as st
 import streamlit.components.v1 as components
 
 def main():
-    st.title("Example Tableau Dashboard")
+    st.wrtie("## Example Tableau Dashboard")
 
     tableau_code = """
     <div class='tableauPlaceholder' id='viz1720513827896' style='position: relative'>
