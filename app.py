@@ -177,7 +177,7 @@ import streamlit as st
 import streamlit.components.v1 as components
 
 def main():
-    st.title("Embedded Tableau Dashboard in Streamlit")
+    st.title("Tableau Dashboard")
 
     tableau_code = """
     <div class='tableauPlaceholder' id='viz1720513827896' style='position: relative'>
