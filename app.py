@@ -6,7 +6,7 @@ import seaborn as sns
 import os
 
 # Title and Description
-st.title("\tNetflix Viewing Activity Analysis")
+st.title("Netflix Viewing Activity Analysis")
 st.write(
     """
 This app allows you to analyze your Netflix viewing activity.
@@ -50,7 +50,7 @@ if uploaded_file is not None:
     df = df[df["duration_min"] >= 2]
 
     # Data Visualization of Profiles
-    st.write("\n ### Viewing Frequency of Each Profile")
+    st.write("\n\n\n ### Viewing Frequency of Each Profile")
     profile_count = df["Profile Name"].value_counts()
 
     fig, ax = plt.subplots(figsize=(8, 5))
@@ -84,20 +84,20 @@ if uploaded_file is not None:
     ax.bar(durations_count.index, durations_count.values, color="purple")
     ax.set_xlabel("Duration categories", fontsize=12)
     ax.set_ylabel("Frequency", fontsize=12)
-    ax.set_title("Durations of Viewing Activity", fontsize=14)
+    ax.set_title("\n\nDurations of Viewing Activity", fontsize=14)
     ax.tick_params(axis="both", which="major", labelsize=10)
     st.pyplot(fig)
 
-    st.write("\n ### Stacked Bar Chart for Duration Categories by Profile")
+    st.write("\n\n\n ### Stacked Bar Chart for Duration Categories by Profile")
     df_duration.groupby(["Profile Name", "duration_cats"]).size().unstack().plot(
         kind="bar", stacked=True
     )
-    plt.title("Duration of Viewing Activity")
+    plt.title("\nDuration of Viewing Activity")
     plt.legend(loc=(1.05, 0))
     st.pyplot(plt)
 
     # Selective Profile Analysis
-    st.write("### Selective Profile Analysis")
+    st.write("\n\n\n ### Selective Profile Analysis")
     unique_profiles = df["Profile Name"].unique()
     profile = st.selectbox("Select a profile", unique_profiles)
 
