@@ -6,7 +6,7 @@ import seaborn as sns
 import os
 
 # Title and Description
-st.title("Netflix Viewing Activity Analysis")
+st.title("\tNetflix Viewing Activity Analysis")
 st.write(
     """
 This app allows you to analyze your Netflix viewing activity.
@@ -14,13 +14,11 @@ This app allows you to analyze your Netflix viewing activity.
 )
 
 # File Upload
-uploaded_file = st.file_uploader("Choose a CSV file", type="csv")
+uploaded_file = st.file_uploader("\n\n", type="csv")
 if uploaded_file is not None:
     # Load data
     df = pd.read_csv(uploaded_file)
     st.write("Shape of the dataset:", df.shape)
-    st.write("Data Information:", df.info())
-    st.write(df.head())
 
     # Data Cleaning
     df_copy = df.copy()
@@ -52,14 +50,15 @@ if uploaded_file is not None:
     df = df[df["duration_min"] >= 2]
 
     # Data Visualization of Profiles
-    st.write("## Viewing Frequency of Each Profile")
+    st.write("\n ### Viewing Frequency of Each Profile")
     profile_count = df["Profile Name"].value_counts()
 
     fig, ax = plt.subplots(figsize=(8, 5))
     ax.bar(profile_count.index, profile_count.values, color="teal")
     ax.set_ylabel("Frequency", fontsize=12)
     ax.set_xlabel("Profile Name", fontsize=12)
-    ax.set_title("Viewing Frequency of Each Profile", fontsize=15)
+    ax.set_title("\nViewing Frequency of Each Profile", fontsize=15)
+    ax.tick_params(axis="both", which="major", labelsize=10)
     st.pyplot(fig)
 
     # Duration Analysis
@@ -89,7 +88,7 @@ if uploaded_file is not None:
     ax.tick_params(axis="both", which="major", labelsize=10)
     st.pyplot(fig)
 
-    st.write("## Stacked Bar Chart for Duration Categories by Profile")
+    st.write("\n ### Stacked Bar Chart for Duration Categories by Profile")
     df_duration.groupby(["Profile Name", "duration_cats"]).size().unstack().plot(
         kind="bar", stacked=True
     )
@@ -98,7 +97,7 @@ if uploaded_file is not None:
     st.pyplot(plt)
 
     # Selective Profile Analysis
-    st.write("## Selective Profile Analysis")
+    st.write("### Selective Profile Analysis")
     unique_profiles = df["Profile Name"].unique()
     profile = st.selectbox("Select a profile", unique_profiles)
 
@@ -126,7 +125,7 @@ if uploaded_file is not None:
         st.write(
             f"Data for profile '{profile}' with selected devices exported to '{csv_filename}'"
         )
-        st.write(f"Shape of combined data: {df_combined.shape}")
+        st.write(f"Shape of combined data: {df_combined.shape} \n")
 
         by_hour = df_combined["Start Time"].value_counts().sort_index(ascending=True)
         by_hour.index = pd.to_datetime(by_hour.index)
@@ -164,19 +163,19 @@ if uploaded_file is not None:
         tableau_embed_code = """<div class='tableauPlaceholder' id='viz1720513827896' style='position: relative'><noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ne&#47;Netflix_report_17204413655820&#47;Dashboard1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='Netflix_report_17204413655820&#47;Dashboard1' /><param name='tabs' value='yes' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ne&#47;Netflix_report_17204413655820&#47;Dashboard1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1720513827896');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';} else { vizElement.style.width='100%';vizElement.style.minHeight='1800px';vizElement.style.maxHeight=(divElement.offsetWidth*1.77)+'px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>"""
 
         # Display embedded Tableau Public dashboard
-        st.write("## Embedded Tableau Public Dashboard")
+        st.write("\n")
         st.markdown(tableau_embed_code, unsafe_allow_html=True)
 
         # Remove CSV file after displaying results
         os.remove(csv_filename)
 else:
-    st.write("Please upload a CSV file to proceed.")
+    st.write("Please upload a CSV file to proceed.\n")
 
 import streamlit as st
 import streamlit.components.v1 as components
 
 def main():
-    st.write("## Example Tableau Dashboard")
+    st.write("### Example Tableau Dashboard")
 
     tableau_code = """
     <div class='tableauPlaceholder' id='viz1720513827896' style='position: relative'>
@@ -224,5 +223,5 @@ def main():
     # Embed the Tableau code into Streamlit using components.html
     components.html(tableau_code, height=800)
 
-if __name__ == "__main__":
+if _name_ == "_main_":
     main()
