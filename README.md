@@ -1,2 +1,1 @@
-upload your csv file and run the file with
-streamlit app.py
+https://netflixanalysis.streamlit.app/
