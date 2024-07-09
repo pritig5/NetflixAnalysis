@@ -9,7 +9,6 @@ import os
 st.title("Netflix Viewing Activity Analysis")
 st.write(
     """
-## Data Cleaning and Analysis
 This app allows you to analyze your Netflix viewing activity.
 """
 )
@@ -176,8 +175,7 @@ else:
 import streamlit as st
 import streamlit.components.v1 as components
 
-def main():
-    st.title("Tableau Dashboard")
+st.title("Tableau Dashboard")
 
     tableau_code = """
     <div class='tableauPlaceholder' id='viz1720513827896' style='position: relative'>
@@ -225,5 +223,5 @@ def main():
     # Embed the Tableau code into Streamlit using components.html
     components.html(tableau_code, height=800)
 
-if __name__ == "__main__":
-    main()
+
+    
