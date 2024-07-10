@@ -5,13 +5,40 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import os
 
+# Set the page config for better visuals
+st.set_page_config(page_title="Netflix Viewing Activity Analysis", layout="wide")
+
+# Custom CSS to style the app
+st.markdown("""
+    <style>
+    .main {background-color: #000000;}
+    .stApp {max-width: 1200px; margin: auto; color: white;}
+    .title {color: #E50914; font-family: Arial, Helvetica, sans-serif; font-size: 32px; font-weight: bold;}
+    .description {color: #FFFFFF; font-size: 18px;}
+    .sidebar .sidebar-content {background-color: #333333; padding: 10px; color: white;}
+    .sidebar .sidebar-content h2 {font-family: Arial, Helvetica, sans-serif; color: #E50914; font-size: 24px;}
+    .sidebar .sidebar-content a {text-decoration: none; color: #E50914; font-size: 18px;}
+    .sidebar .sidebar-content a:hover {color: #FFFFFF;}
+    </style>
+    """, unsafe_allow_html=True)
+
+# Sidebar for navigation
+st.sidebar.markdown("<h2>Navigation</h2>", unsafe_allow_html=True)
+st.sidebar.markdown("<a href='#overview'>Overview</a>", unsafe_allow_html=True)
+st.sidebar.markdown("<a href='#profile-analysis'>Profile Analysis</a>", unsafe_allow_html=True)
+st.sidebar.markdown("<a href='#duration-analysis'>Duration Analysis</a>", unsafe_allow_html=True)
+st.sidebar.markdown("<a href='#heatmap'>Heatmap</a>", unsafe_allow_html=True)
+st.sidebar.markdown("<a href='#tableau-dashboard'>Tableau Dashboard</a>", unsafe_allow_html=True)
+
 # Title and Description
-st.title("Netflix Viewing Activity Analysis")
-st.write(
-    """
-This app allows you to analyze your Netflix viewing activity.
-"""
-)
+st.markdown("<h1 class='title'>Netflix Viewing Activity Analysis</h1>", unsafe_allow_html=True)
+st.markdown("""
+    <p class='description'>
+    This app allows you to analyze your Netflix viewing activity.
+    Please upload your Netflix viewing activity CSV file to proceed.
+    </p>
+    """, unsafe_allow_html=True)
+
 
 # File Upload
 uploaded_file = st.file_uploader("\n\n", type="csv")
@@ -49,7 +76,7 @@ if uploaded_file is not None:
     )
     df = df[df["duration_min"] >= 2]
 
-    # Data Visualization of Profiles
+    # Profiles Analysis
     st.write("\n\n\n ### Viewing Frequency of Each Profile")
     profile_count = df["Profile Name"].value_counts()
 
@@ -157,6 +184,7 @@ if uploaded_file is not None:
         ax.set_xlabel("Hour of day", fontsize=12)
         ax.set_ylabel("Day of Week", fontsize=12)
         ax.tick_params(axis="both", which="major", labelsize=10)
+        #heatmap
         st.pyplot(f)
 
         # Provide Tableau Public embed code here
